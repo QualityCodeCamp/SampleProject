@@ -1,0 +1,12 @@
+1. There are 3 main classes , base class, driverfactory and capability Manager
+ Base class test creates the driver
+ Driverfactory class has the instance of driver that can be used acrss any test class. Any driver specific method or device specifc method should be
+ put here such as settargetplatform, checking if android platform or ios, checking device os version etc
+
+ Capability Manager have all capabilities of android and ios
+
+
+ All basic operations such as scroll, click, sendkeys goes into Baseobjectopertions class which has an instance of driverfactory
+ And all pageobjects class such as homepage extend Baseobjectoperations
+
+ Using this framework we have everything decoupled.
