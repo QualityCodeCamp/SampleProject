@@ -1,15 +1,10 @@
 package com.Automation;
 
-import com.Automation.DriverFactory;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.checkerframework.checker.index.qual.PolyUpperBound;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -28,9 +23,10 @@ public class BaseObjectOperations {
     public DriverFactory driverFactory;
 
     public BaseObjectOperations(DriverFactory driverFactory){
-        this.driver=driverFactory.getdriver();
+        this.driver=driverFactory.getDriver();
         this.driverFactory=driverFactory;
-        PageFactory.initElements(new AppiumFieldDecorator(driver,NO_WAITING_TIMEOUT),this);
+        PageFactory.initElements(driver, this);
+        //PageFactory.initElements(new AppiumFieldDecorator(driver,NO_WAITING_TIMEOUT),this);
         defaultWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
         longWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
         shortWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
