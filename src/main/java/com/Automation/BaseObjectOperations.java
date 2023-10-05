@@ -1,6 +1,7 @@
 package com.Automation;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -25,8 +26,8 @@ public class BaseObjectOperations {
     public BaseObjectOperations(DriverFactory driverFactory){
         this.driver=driverFactory.getDriver();
         this.driverFactory=driverFactory;
-        PageFactory.initElements(driver, this);
-        //PageFactory.initElements(new AppiumFieldDecorator(driver,NO_WAITING_TIMEOUT),this);
+
+        PageFactory.initElements(new AppiumFieldDecorator(driver,NO_WAITING_TIMEOUT),this);
         defaultWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
         longWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
         shortWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
