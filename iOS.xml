@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Android Basic Test Suite">
-<parameter name="DEVICE_NAME" value="iPhone 14 Pro"></parameter>
-<parameter name="DEVICE_ID" value=""></parameter>
+<suite name="ios Basic Test Suite">
+    <parameter name="DEVICE_NAME" value="iPhone 14"></parameter>
     <parameter name="PLATFORM" value="iOS"></parameter>
-    <parameter name="PLATFORM_VERSION" value="16.4"></parameter>
+    <parameter name="PLATFORM_VERSION" value="14"></parameter>
+    <parameter name="DEVICE_ID" value="emulator-5554"></parameter>
     <parameter name="DRIVER_URL" value="http://0.0.0.0:4723"></parameter>
-    <parameter name="APP_NAME" value="/Users/charat/Library/Developer/Xcode/DerivedData/UICatalog-gcvlxsicrwknulghbeqenpmgfebt/Build/Products/Debug-iphonesimulator/UICatalog.app"></parameter>
+    <parameter name="APP_NAME" value="/Users/bharatmalik/Documents/GitHub/SampleProject/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.app"></parameter>
 
     <test name="AppiumUdemyProject">
 
