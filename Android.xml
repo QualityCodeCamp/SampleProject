@@ -6,12 +6,12 @@
     <parameter name="PLATFORM" value="Android"></parameter>
     <parameter name="PLATFORM_VERSION" value="13"></parameter>
     <parameter name="DRIVER_URL" value="http://0.0.0.0:4723"></parameter>
-    <parameter name="APP_NAME" value="/Users/charat/Downloads/SampleProject/ApiDemos-debug.apk"></parameter>
+    <parameter name="APP_NAME" value="/Users/charat/Downloads/SampleProject/Android.SauceLabs.Mobile.apk"></parameter>
 
     <test name="AppiumUdemyProject">
 
         <classes>
-            <class name="AndroidTest.Test1"></class>
+            <class name="LoginTests.LoginTestCases"></class>
         </classes>
     </test>
 </suite>

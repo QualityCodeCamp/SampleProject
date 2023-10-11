@@ -33,11 +33,28 @@ public class BaseObjectOperations {
         shortWait=new WebDriverWait(driver,Duration.ofSeconds(DEFAULT_WAITING_TIMEOUT_INT));
     }
 
-    public  void ClickElement(WebElement element){
-        waitforElement(element,defaultWait);
+    public void clickElement(WebElement element){
+        waitForElement(element,defaultWait);
         element.click();
     }
-    public   void waitforElement(WebElement element,WebDriverWait wait){
+
+    public void sendKeys(WebElement element, String text){
+        waitForElement(element,defaultWait);
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    public boolean isDisplayed(WebElement element){
+        waitForElement(element,defaultWait);
+        return element.isDisplayed();
+    }
+
+    public String getText(WebElement element){
+        waitForElement(element,defaultWait);
+        return element.getText();
+    }
+
+    public void waitForElement(WebElement element,WebDriverWait wait){
         wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOf(element));
     }
 }

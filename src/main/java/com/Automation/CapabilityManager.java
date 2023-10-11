@@ -14,6 +14,9 @@ public class CapabilityManager {
         androidcapabilities.setUdid(deviceid);
         androidcapabilities.setDeviceName(deviceName);
         androidcapabilities.setApp(appName);
+        androidcapabilities.setNoReset(true);
+        androidcapabilities.setAutoGrantPermissions(true);
+
         return androidcapabilities;
     }
 

@@ -14,7 +14,6 @@ public class DriverFactory {
     private String deviceName = null;
     public static InheritableThreadLocal<AppiumDriver> staticMobDriver = new InheritableThreadLocal<>();
 
-
     public synchronized void setTargetPlatform(String platform) {
         targetPlatform = platform;
     }
@@ -52,7 +51,10 @@ public class DriverFactory {
     public boolean isAndroidPlatform() {
         if (targetPlatform != null && targetPlatform.equalsIgnoreCase("Android")) {
             return true;
-        } else return System.getProperty("PLATFORM").equalsIgnoreCase("Android");
+        } else
+        {
+            return System.getProperty("PLATFORM") != null && System.getProperty("PLATFORM").equalsIgnoreCase("Android");
+        }
 
     }
 

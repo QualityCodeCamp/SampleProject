@@ -1,6 +1,7 @@
 package com.Automation;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
@@ -10,7 +11,7 @@ public class BaseTest {
 
     @Parameters({"DEVICE_NAME", "DEVICE_ID", "PLATFORM", "PLATFORM_VERSION", "DRIVER_URL", "APP_NAME"})
     @BeforeClass
-    public void initSetup(String deviceName, String deviceId, String platform, String platformversion, String driverURL, String appName) {
+    public void initSetup(String deviceName, @Optional String deviceId, String platform, String platformVersion, String driverURL, String appName) {
         int attemptCount = 0;
         while (attemptCount < 3) {
             System.out.println("Value of Counter is " + attemptCount);
