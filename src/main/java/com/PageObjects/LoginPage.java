@@ -2,20 +2,10 @@ package com.PageObjects;
 
 import com.Automation.BaseObjectOperations;
 import com.Automation.DriverFactory;
-import com.Helper.MessageConstants;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.HideKeyboardStrategy;
-import org.testng.Assert;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BaseObjectOperations {
 
@@ -46,16 +36,11 @@ public class LoginPage extends BaseObjectOperations {
        clickElement(login_Button);
     }
 
-    public void LoginAction_Negative_IncorrectPassword(String username, String password) {
-        LoginAction(username, password);
-        Assert.assertTrue(errorMessage_Text.isDisplayed(), MessageConstants.GeneralAssertionMessage);
-        Assert.assertEquals(getText(errorMessage_Text), MessageConstants.InvalidUserNamePasswordMessage);
+    public String getErrorMessageText(){
+       return getText(errorMessage_Text);
     }
 
-    public void LoginAction_Negative_LockedUser(String username, String password) {
-        LoginAction(username, password);
-        Assert.assertTrue(errorMessage_Text.isDisplayed(), MessageConstants.GeneralAssertionMessage);
-        Assert.assertEquals(getText(errorMessage_Text), MessageConstants.LockedOutUserMessage);
+    public  boolean isErrorMessageDisplayed(){
+        return isDisplayed(errorMessage_Text);
     }
-
 }

@@ -1,6 +1,7 @@
 package LoginTests;
 
 import com.Automation.BaseTest;
+import com.Helper.MessageConstants;
 import com.PageObjects.LoginPage;
 import com.PageObjects.ProductsPage;
 import dev.failsafe.internal.util.Assert;
@@ -16,7 +17,6 @@ public class LoginTestCases extends BaseTest {
     public void setup() {
         loginPage = new LoginPage(driverFactory);
         productsPage = new ProductsPage(driverFactory);
-
     }
 
     @Test
@@ -27,12 +27,16 @@ public class LoginTestCases extends BaseTest {
 
     @Test
     public void loginTest_Negative_IncorrectPassword() {
-        loginPage.LoginAction_Negative_IncorrectPassword("standard_user", "secret_sauce2");
+        loginPage.LoginAction("standard_user", "secret_sauce2");
+        org.testng.Assert.assertTrue(loginPage.isErrorMessageDisplayed(), MessageConstants.GeneralAssertionMessage);
+        org.testng.Assert.assertEquals(loginPage.getErrorMessageText(), MessageConstants.InvalidUserNamePasswordMessage);
     }
 
     @Test
     public void loginTest_Negative_LockedUser() {
-        loginPage.LoginAction_Negative_LockedUser("locked_out_user", "secret_sauce");
+        loginPage.LoginAction("locked_out_user", "secret_sauce");
+        org.testng.Assert.assertTrue(loginPage.isErrorMessageDisplayed(), MessageConstants.GeneralAssertionMessage);
+        org.testng.Assert.assertEquals(loginPage.getErrorMessageText(), MessageConstants.LockedOutUserMessage);
     }
 
     @AfterClass

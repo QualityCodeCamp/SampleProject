@@ -1,5 +1,6 @@
 package com.Automation;
 
+import io.appium.java_client.android.AndroidDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -44,6 +45,10 @@ public class BaseTest {
 
     public void tearDown() {
         System.out.println("Quiting driver");
+        if(driverFactory.isAndroidPlatform()){
+            ((AndroidDriver) driverFactory.getDriver()).terminateApp("/Users/charat/Downloads/SampleProject/Android.SauceLabs.Mobile.apk");
+        }
         driverFactory.getDriver().quit();
+
     }
 }

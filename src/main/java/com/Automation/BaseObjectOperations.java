@@ -1,6 +1,7 @@
 package com.Automation;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -16,7 +17,12 @@ public class BaseObjectOperations {
     private static final  int DEFAULT_WAITING_TIMEOUT_INT=60;
     private static final  int LONG_WAITING_TIMEOUT_INT =120;
     private static final  int SHORT_WAITING_TIMEOUT_INT=30;
-    private AppiumDriver driver;
+    public AppiumDriver driver;
+
+    public WebDriverWait getDefaultWait() {
+        return defaultWait;
+    }
+
     private WebDriverWait defaultWait;
     private WebDriverWait longWait;
     private WebDriverWait shortWait;
@@ -38,6 +44,15 @@ public class BaseObjectOperations {
         element.click();
     }
 
+    public void clickElementWithoutWait(WebElement element){
+        element.click();
+    }
+
+    public String getAttributeValue(WebElement element, String attribute){
+        //waitForElement(element,defaultWait);
+        return element.getAttribute(attribute);
+    }
+
     public void sendKeys(WebElement element, String text){
         waitForElement(element,defaultWait);
         element.clear();
@@ -56,5 +71,8 @@ public class BaseObjectOperations {
 
     public void waitForElement(WebElement element,WebDriverWait wait){
         wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOf(element));
+    }
+    public boolean IsPlatformAndroid(){
+        return driver instanceof AndroidDriver;
     }
 }
