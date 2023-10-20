@@ -11,7 +11,7 @@
     <test name="AppiumUdemyProject">
 
         <classes>
-            <class name="LoginTests.LoginTestCases"></class>
+            <class name="LoginTests.ProcessOrderTests"></class>
         </classes>
     </test>
 </suite>
