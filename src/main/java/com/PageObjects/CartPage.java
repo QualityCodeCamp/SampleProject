@@ -38,16 +38,13 @@ public class CartPage extends BaseObjectOperations {
     }
 
     @Step("Click on Checkout")
-    public void     Checkout(){
+    public void Checkout(){
 
         if (driverFactory.isAndroidPlatform()) {
            ActionsHelper.Scroll("CHECKOUT", (AndroidDriver) driver);
        }
         else{
-            HashMap<String, String> scrollObject = new HashMap<>();
-            JavascriptExecutor js = driver;
-            scrollObject.put("direction", "down");
-            js.executeScript("mobile: scroll", scrollObject);
+            ActionsHelper.Scroll(driver, GestureDirection.DOWN.getAction());
         }
         clickElement(checkout_Button);
     }

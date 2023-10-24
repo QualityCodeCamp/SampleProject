@@ -3,6 +3,7 @@ package com.PageObjects;
 import com.Automation.BaseObjectOperations;
 import com.Automation.DriverFactory;
 import com.Helper.ActionsHelper;
+import com.Helper.GestureDirection;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -28,7 +29,12 @@ public class CheckoutOverviewPage extends BaseObjectOperations {
 
     @Step("Click on finish")
     public void ClickFinishButton() {
-        clickElementWithoutWait(finish_Button);
+        if(driverFactory.isAndroidPlatform()){
+            ActionsHelper.Scroll("FINISH", (AndroidDriver) driver);
+        } else {
+            ActionsHelper.Scroll(driver, GestureDirection.DOWN.getAction());
+        }
+        clickElement(finish_Button);
     }
 
     public String GetTotal() {

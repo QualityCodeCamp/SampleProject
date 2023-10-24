@@ -21,7 +21,6 @@ public class ActionsHelper {
                         text)));
     }
 
-
     public static void Swipe(WebElement element, AppiumDriver driver, String direction){
         Map<String,Object> params=new HashMap<>();
         params.put("element",((RemoteWebElement)element).getId());
@@ -29,9 +28,9 @@ public class ActionsHelper {
         driver.executeScript("mobile:swipe",params);
     }
 
-    public static void Scroll(WebElement element, AppiumDriver driver, String direction){
+    public static void Scroll(AppiumDriver driver, String direction){
         Map<String,Object> params=new HashMap<>();
-        params.put("element",((RemoteWebElement)element).getId());
+       // params.put("element",((RemoteWebElement)element).getId());
         params.put("direction", direction);
         driver.executeScript("mobile:scroll",params);
     }
