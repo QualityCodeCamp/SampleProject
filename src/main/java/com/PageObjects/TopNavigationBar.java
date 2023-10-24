@@ -26,7 +26,7 @@ public class TopNavigationBar extends BaseObjectOperations {
 
     public void OpenCart() throws InterruptedException {
 
-        if(IsPlatformAndroid()){
+        if (driverFactory.isAndroidPlatform()) {
             clickElement(cart_Button);
         }
         else{

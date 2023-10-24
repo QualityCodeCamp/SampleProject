@@ -22,7 +22,7 @@ public class CheckoutComplete extends BaseObjectOperations {
     WebElement confirmation_Text;
 
     public String GetOrderConfirmation(){
-        if(IsPlatformAndroid()){
+        if (driverFactory.isAndroidPlatform()) {
             return getAttributeValue(confirmation_Text, "text");
         }
 

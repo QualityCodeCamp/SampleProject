@@ -11,6 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -34,17 +35,18 @@ public class CartPage extends BaseObjectOperations {
         driver.findElement(AppiumBy.accessibilityId("test-CONTINUE SHOPPING")).click();
     }
 
+    @Step("Click on Checkout")
     public void Checkout(){
 
-       if (IsPlatformAndroid()) {
+        if (driverFactory.isAndroidPlatform()) {
            ActionsHelper.Scroll("CHECKOUT", (AndroidDriver) driver);
        }
         clickElementWithoutWait(checkout_Button);
     }
 
     public void ClickProductRemove(){
-        WebElement elem = null;
-        if(IsPlatformAndroid()){
+        WebElement elem;
+        if (driverFactory.isAndroidPlatform()) {
             elem = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\"test-Delete\"]/android.view.ViewGroup"));
         }
         else
@@ -54,7 +56,7 @@ public class CartPage extends BaseObjectOperations {
 
     public CartPage SwipeLeftOnProduct(String productName){
         WebElement elem = null;
-        if(IsPlatformAndroid()) {
+        if (driverFactory.isAndroidPlatform()) {
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {

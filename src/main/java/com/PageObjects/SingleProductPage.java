@@ -1,4 +1,5 @@
 package com.PageObjects;
+
 import com.Automation.BaseObjectOperations;
 import com.Automation.DriverFactory;
 import com.Helper.ActionsHelper;
@@ -8,6 +9,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,11 +19,11 @@ import org.testng.Assert;
 
 public class SingleProductPage extends BaseObjectOperations {
 
-    public SingleProductPage(DriverFactory driverFactory){
+    public SingleProductPage(DriverFactory driverFactory) {
         super(driverFactory);
     }
 
-   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-BACK TO PRODUCTS\"]/android.widget.TextView")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-BACK TO PRODUCTS\"]/android.widget.TextView")
     @iOSXCUITFindBy(accessibility = "test-BACK TO PRODUCTS")
     private WebElement backToProducts_Button;
 
@@ -30,39 +32,41 @@ public class SingleProductPage extends BaseObjectOperations {
     private WebElement addToCart;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Description\"]/android.widget.TextView[1]")
-    private  WebElement productName_Text;
+    private WebElement productName_Text;
 
-    public void BackToProductsPageButton(){
+    @Step("Click on Back Button")
+    public void BackToProductsPageButton() {
         clickElement(backToProducts_Button);
     }
 
-    public String GetProductPrice(){
+    public String GetProductPrice() {
         WebElement elem;
-        elem =  driver.findElement(AppiumBy.accessibilityId("test-Price"));
+        elem = driver.findElement(AppiumBy.accessibilityId("test-Price"));
         return getAttributeValue(elem, "value");
     }
 
-    public SingleProductPage AddProductToCart(){
-        if(IsPlatformAndroid())
+    @Step("Add product into the cart")
+    public SingleProductPage AddProductToCart() {
+        if (driverFactory.isAndroidPlatform())
             ActionsHelper.Scroll("ADD TO CART", (AndroidDriver) driver);
 
         clickElementWithoutWait(addToCart);
         return this;
     }
 
-    public SingleProductPage VerifyProductName(String productName){
-        if(IsPlatformAndroid()){
-
-            Assert.assertEquals(productName, getAttributeValue(productName_Text,"text"));
-        } else{
+    @Step("Validate if correct product opened")
+    public SingleProductPage VerifyProductName(String productName) {
+        if (driverFactory.isAndroidPlatform()) {
+            Assert.assertEquals(productName, getAttributeValue(productName_Text, "text"));
+        } else {
             try {
                 driver.findElement(AppiumBy.accessibilityId(productName));
-            } catch (NoSuchElementException e){
+            } catch (NoSuchElementException e) {
                 Assert.fail(String.format("Expected to open %s product page", productName));
             }
         }
 
-         return this;
+        return this;
     }
 
 }

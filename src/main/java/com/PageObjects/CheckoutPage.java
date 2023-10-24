@@ -31,7 +31,7 @@ public class CheckoutPage extends BaseObjectOperations {
     @iOSXCUITFindBy(accessibility = "test-CONTINUE")
     WebElement continue_Button;
 
-    @Step("Login into the app")
+    @Step("Fill checkout info")
     public CheckoutPage FillInformation(String fName, String lName, String code){
 
         sendKeys(firstName_Text, fName);
@@ -40,6 +40,7 @@ public class CheckoutPage extends BaseObjectOperations {
         return this;
     }
 
+    @Step("Click on Continue")
     public CheckoutPage clickContinue(){
         clickElement(continue_Button);
         return this;

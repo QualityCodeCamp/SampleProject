@@ -45,9 +45,6 @@ public class BaseTest {
 
     public void tearDown() {
         System.out.println("Quiting driver");
-        if(driverFactory.isAndroidPlatform()){
-            ((AndroidDriver) driverFactory.getDriver()).terminateApp("/Users/charat/Downloads/SampleProject/Android.SauceLabs.Mobile.apk");
-        }
         driverFactory.getDriver().quit();
 
     }

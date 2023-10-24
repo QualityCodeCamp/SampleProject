@@ -72,7 +72,5 @@ public class BaseObjectOperations {
     public void waitForElement(WebElement element,WebDriverWait wait){
         wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOf(element));
     }
-    public boolean IsPlatformAndroid(){
-        return driver instanceof AndroidDriver;
-    }
+
 }

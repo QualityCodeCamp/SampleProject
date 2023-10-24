@@ -8,6 +8,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -25,17 +26,17 @@ public class CheckoutOverviewPage extends BaseObjectOperations {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@name, 'Total: $')]")
     WebElement total_Text;
 
-    public void ClickFinishButton(){
+    @Step("Click on finish")
+    public void ClickFinishButton() {
         clickElementWithoutWait(finish_Button);
     }
 
-    public String GetTotal(){
-        if(IsPlatformAndroid()){
+    public String GetTotal() {
+        if (driverFactory.isAndroidPlatform()) {
             ActionsHelper.Scroll("FINISH", (AndroidDriver) driver);
             return getAttributeValue(total_Text, "text");
-        }
-        else {
-           var elem =  driver.findElement(AppiumBy.xpath("//XCUIElementTypeStaticText[contains(@name, 'Total: $')]"));
+        } else {
+            var elem = driver.findElement(AppiumBy.xpath("//XCUIElementTypeStaticText[contains(@name, 'Total: $')]"));
             return getAttributeValue(elem, "value");
         }
 

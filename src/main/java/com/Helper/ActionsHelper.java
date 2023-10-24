@@ -14,6 +14,14 @@ import java.util.Map;
 
 public class ActionsHelper {
 
+    // Performs Scroll action on element where text matches the provided parameter
+    public static WebElement Scroll(String text, AndroidDriver driver){
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                String.format("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textMatches(\"%s\").instance(0));",
+                        text)));
+    }
+
+
     public static void Swipe(WebElement element, AppiumDriver driver, String direction){
         Map<String,Object> params=new HashMap<>();
         params.put("element",((RemoteWebElement)element).getId());
@@ -34,11 +42,5 @@ public class ActionsHelper {
                 "direction", direction,
                 "percent", 0.75
         ));
-    }
-
-    public static WebElement Scroll(String text, AndroidDriver driver){
-        return driver.findElement(AppiumBy.androidUIAutomator(
-                String.format("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textMatches(\"%s\").instance(0));",
-                        text)));
     }
 }
