@@ -1,0 +1,8 @@
+org/example/Main.class
+com/Automation/CapabilityManager.class
+com/Automation/BaseObjectOperations.class
+com/Automation/BaseTest.class
+com/Helper/MessageConstants.class
+com/PageObjects/LoginPage.class
+com/PageObjects/ProductsPage.class
+com/Automation/DriverFactory.class

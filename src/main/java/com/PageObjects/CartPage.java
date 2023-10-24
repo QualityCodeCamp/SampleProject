@@ -17,6 +17,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.HashMap;
+
 public class CartPage extends BaseObjectOperations {
 
     public CartPage(DriverFactory driverFactory){
@@ -36,12 +38,18 @@ public class CartPage extends BaseObjectOperations {
     }
 
     @Step("Click on Checkout")
-    public void Checkout(){
+    public void     Checkout(){
 
         if (driverFactory.isAndroidPlatform()) {
            ActionsHelper.Scroll("CHECKOUT", (AndroidDriver) driver);
        }
-        clickElementWithoutWait(checkout_Button);
+        else{
+            HashMap<String, String> scrollObject = new HashMap<>();
+            JavascriptExecutor js = driver;
+            scrollObject.put("direction", "down");
+            js.executeScript("mobile: scroll", scrollObject); //or "mobile: swipe"
+        }
+        clickElement(checkout_Button);
     }
 
     public void ClickProductRemove(){
