@@ -75,6 +75,28 @@ public class DriverFactory {
         return deviceName;
     }
 
+    public void terminateapp(){
+        if(isAndroidPlatform()){
+            ((AndroidDriver)getDriver()).terminateApp("com.swaglabsmobileapp");
+
+        }
+        else {
+            ((IOSDriver)getDriver()).terminateApp("com.saucelabs.SwagLabsMobileApp");
+        }
+
+    }
+
+    public void activeapp(){
+        if(isAndroidPlatform()){
+            ((AndroidDriver)getDriver()).activateApp("com.swaglabsmobileapp");
+
+        }
+        else {
+            ((IOSDriver)getDriver()).activateApp("com.saucelabs.SwagLabsMobileApp");
+        }
+
+    }
+
 }
 
 
