@@ -47,7 +47,7 @@ public class CartPage extends BaseObjectOperations {
             HashMap<String, String> scrollObject = new HashMap<>();
             JavascriptExecutor js = driver;
             scrollObject.put("direction", "down");
-            js.executeScript("mobile: scroll", scrollObject); //or "mobile: swipe"
+            js.executeScript("mobile: scroll", scrollObject);
         }
         clickElement(checkout_Button);
     }
